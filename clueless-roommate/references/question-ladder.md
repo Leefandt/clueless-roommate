@@ -1,134 +1,108 @@
-# Question ladder
+# Question ladder (cross-examination edition)
 
 ## How to use it
 
-- **One question per turn.** No stacking, no "and also?"; save the second question for the next turn.
-- **Question types are ordered by *when to ask them*, not by *what they prove*; scoring follows the evidence table in `mastery-rubric.md`.**
-- Check the concept's current mastery first. Low mastery → lower rungs; high mastery → higher rungs.
-- No more than 3 consecutive turns on one concept, then switch; you can return later.
-- Mix question types across the session; do not ask three "why" questions in a row.
+- **2A teach-back: no questions.** Give the teach-back prompt only; do not interrupt.
+- **2B cross-examination: one question per turn.** Every question must be anchored to the user's own words, or to a core concept they never mentioned.
+- Question types are ordered by *what they attack*, not by *what they prove*; scoring follows `mastery-rubric.md`.
+- Follow up on each attack point at most once; no more than 3 consecutive attack points on one concept, then switch (you can return later).
+- Mix attack types across the session; do not ask three "why" questions in a row.
 
-## Ladder
+## 2A teach-back prompt (not an attack)
 
-### Mastery 0-1: get them talking
+Fixed opening:
 
-**Open explanation**
+"Okay, don't worry about me for a second. Take 5-10 minutes and explain this whole thing — from [start] to [end] — as if I've never seen it. If you get stuck, skip it and keep going. Say 'done' when you're finished."
 
-- Purpose: can the user organize the idea from scratch?
-- Prompt: "No jargon — pretend I've never seen this. What is this thing even for?"
-- Good answer: a motive, a target, a conclusion; understandable without jargon.
-- Watch for: reciting a definition or dumping formulas.
+If the user does not know where to start:
 
-**Motive question**
+"Just go: what it is → why it exists → how to use / derive it → when it fails."
 
-- Purpose: do they know why it exists?
-- Prompt: "Before this existed, what did people do?"
-- Next turn, if needed: "What trouble does it actually solve?"
-- Good answer: a concrete difficulty.
+If the teach-back is very short:
 
-**Jargon translation**
+"Anything else?" (once only; do not name specific concepts)
 
-- Purpose: jargon tax. Every term the roommate does not know gets one question.
-- Prompt: "Wait — what does 'X' mean?"
-- Good answer: a one-line translation + an example.
-- Note: ask about one term at a time; pick the most important one.
+If the user asks "am I right?":
 
-**Concrete example**
+"Finish first; I'll ask everything at the end."
 
-- Purpose: ground the abstraction; test whether they can invent an example.
-- Prompt: "Give me a concrete example — numbers if possible. I'll follow along."
-- Good answer: correct, well-scoped, and worked through.
-- Watch for: an example copied from the slides (not self-generated).
+## 2B attack types
 
-**Condition question**
+### Quote
 
-- Purpose: test whether they know the scope.
-- Prompt: "When does this step *not* work?"
-- Note: one direction at a time. If they say "I don't know," offer one counterexample and ask "What about this one?"
-- Good answer: states the precondition and what fails without it.
+- Purpose: pin the question to the user's own words; prevent drift.
+- Prompt: "You said X, but I got lost at Y."
+- Good answer: the user returns to their own claim and fills in the missing step.
+- Note: quote first, then ask; don't just ask "why?"
 
-### Mastery 2: make them explain
+### Fill the step
 
-**Causal chain**
-
-- Prompt: "Why does this step lead to the next one?"
-- Next turn, if needed: "Is there a step missing in between?"
+- Purpose: catch a logical leap.
+- Prompt: "You went from A straight to B — what's missing in between?"
 - Good answer: fills in the missing step instead of repeating the conclusion.
 
-**Comparison**
+### Condition / boundary
 
-- Prompt: "Is this the same as X? I keep thinking they're the same."
-- Good answer: the key difference + an example that distinguishes them.
-
-**Counterexample / boundary**
-
-- Prompt: "Does it still hold if X?"
+- Purpose: test the scope.
+- Prompt: "You said it always holds. What if C?"
+- Note: one condition / counterexample at a time.
 - Good answer: correct judgment + reason.
 
-**Necessity**
+### Coverage omission
 
-- Prompt: "Can this step be skipped?"
-- Next turn, if needed: "What happens if you skip it?"
-- Good answer: explains the step's role in the proof / calculation.
+- Purpose: catch a core concept the teach-back never mentioned.
+- Prompt: "You never mentioned D. What is D for?"
+- Note: D must come from the knowledge map's core concepts, not a topic you invented on the spot.
+- Good answer: the user supplies D's definition + why it exists.
 
-**Roommate writes a problem (user solves)**
+### Contradiction
 
-- Purpose: test the full procedure, not just verbal explanation.
-- Prompt: "Let me make one up: ... Work it through with what you just taught me?"
-- Method: invent a simple numerical / scenario problem from the user's setup; let the user go from start to finish. The roommate may work it first and make one deliberate error for the user to catch.
-- Good answer: correct setup, complete steps, catches the roommate's error.
-- Note: one small problem at a time; use only what the user has taught.
+- Purpose: catch internal inconsistency.
+- Prompt: "Earlier you said X, then you said Y. How can both be true?"
+- Note: quote both claims; do not adjudicate for the user.
+- Good answer: the user explains, repairs, or identifies which claim was wrong.
 
-**Misconception trap**
+### Example / number
 
-- Purpose: test error discrimination, which is harder than recall.
-- Method: take a common misconception from the knowledge map and state it confidently as your own understanding.
-- Prompt: "Oh, so I think it's X, right?" (X is wrong but plausible.)
-- If the user corrects you: ask "Where exactly is it wrong?" — demand a specific reason, not just "no."
-- If the user agrees: do not expose it. Note it, keep the error alive, and create a contradiction a few turns later.
+- Purpose: ground the abstraction.
+- Prompt: "Give me a concrete example — numbers if possible. I'll follow along."
+- Good answer: correct, well-scoped, worked through.
+- Watch for: an example copied from the slides (not self-generated).
 
-### Mastery 3: make them transfer
+### Role reversal
 
-**New scenario**
+- Purpose: test error discrimination.
+- Prompt: "Let me explain it back the way you did. Tell me where I'm wrong."
+- Method: use the user's words + one typical misconception to produce a version that sounds right.
+- Good answer: identifies the exact error + explains why + gives the correct version.
 
-- Prompt: "Okay, different scenario: ... does your explanation still work?"
+### Transfer
+
+- Purpose: test whether they can leave the original scenario.
+- Prompt: "Different scenario: ... does your explanation still work?"
 - If they say yes, next turn: "How?"
 - Good answer: identifies applicability + transfers correctly, or says no with a reason.
 
-**Role reversal**
+### Jargon translation
 
-- Prompt: "Want me to explain it back? Tell me where I'm wrong."
-- Method: use the user's words + one typical error to produce a version that sounds right.
-- Good answer: identifies the exact error + explains why + gives the correct version.
+- Purpose: jargon tax. If the teach-back uses an unexplained term, ask once.
+- Prompt: "Wait — what does 'X' mean?"
+- Note: at most 2 terms; pick the most important one.
+- Good answer: a one-line translation + an example.
 
-**User writes a problem**
+## Attack order
 
-- Prompt: "Quiz me — make up a problem and I'll work it."
-- Method: the user writes a problem; the roommate works it seriously but may make one "reasonable" error; the user must grade it.
-- Good answer: a valid problem, anticipates errors, grades accurately.
-
-**Extreme case**
-
-- Prompt: "What if there is only one sample?"
-- Note: pick one extreme case at a time; do not list a string of them.
-- Good answer: judges whether the theorem fails and explains why.
-
-**Three-sentence summary**
-
-- Prompt: "Summarize it in three sentences so tomorrow-me can remember it."
-- Good answer: preserves the core causal chain without jargon.
-
-## Selection priority
-
-1. A concept not yet probed.
-2. The concept with the lowest mastery.
-3. A concept with a gap that has not been repaired.
-4. A concept the user raised but did not explain fully.
+1. The most important gap / error in the teach-back.
+2. Core concepts that were never mentioned.
+3. Boundaries / transfer.
+4. Contradictions.
+5. Jargon.
 
 ## Follow-up rules
 
-- Vague but on-topic: follow up at most once, rephrasing the same point; if still vague, change the angle or the concept.
+- Vague but on-topic: follow up at most once, rephrasing the same point; if still vague, switch attack points.
 - Wrong: do not repeat the original question. Either follow the error downstream ("So wouldn't that mean...?") or switch to a smaller entry point.
 - Correct but too smooth: add one "why?" or "what if...?"; do not switch concepts immediately.
 - Do not ask for details that require the slides to answer; the roommate has not read them.
 - Keep questions to 1-2 sentences; do not answer your own question before the user replies.
+- Mark each attack point `resolved` or `unresolved` before moving on.

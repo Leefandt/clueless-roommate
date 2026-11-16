@@ -1,15 +1,21 @@
 # Mastery rubric (internal)
 
-## Levels
+## Two layers
 
-- **0 Cannot explain**: cannot describe the concept in their own words, or only says "it's the thing with..."
-- **1 Recites definitions**: can repeat the term / definition / formula, but stalls on "why?" or "give me an example."
-- **2 Explains**: can explain the "why / where it comes from" in their own words, and can handle at least one of: a condition, an example, or a misconception.
-- **3 Transfers**: can use it correctly in a new scenario, correct a specific error, and state the boundary.
+### Layer 1: Baseline S
 
-## The single evidence table
+When the user gives the complete teach-back, score each core concept:
 
-Score only from this table. Every piece of evidence must be quotable from the user's own words.
+- **0 Not mentioned**: absent from the whole explanation.
+- **1 Name / definition only**: states the term or conclusion, but does not explain why.
+- **2 Explains why or gives an example**: at least one causal explanation or one correct example.
+- **3 Explains why + example + condition / boundary**: all three.
+
+This layer counts only what the user produced spontaneously, not what they say after being asked. Record exact quotes.
+
+### Layer 2: Defense D
+
+Use the evidence table below, 0-3. Cross-examination questions can supply evidence, but mark it `prompted`.
 
 | Evidence | Supports |
 |---|---|
@@ -31,18 +37,59 @@ Score only from this table. Every piece of evidence must be quotable from the us
 Rules:
 
 - The same piece of evidence does not count twice.
-- One answer can raise the level by at most one step; going from 1 to 3 requires separate turns.
 - Explaining what a term *means* = level 1; explaining *why the conclusion holds* = level 2.
+- One answer can raise the level by at most one step; going from 1 to 3 requires separate turns.
 - "Right / yeah / I don't know" is not evidence; neither is the roommate's paraphrase.
 - Anything you explained in State 1, even if the user repeats it smoothly, is level 1 at most.
-- No exact quote = no evidence; the score stays or drops. Never award points from memory or vibes.
+- No exact quote = no evidence; the score stays or drops.
+
+## Final F and the verdict cap
+
+- F = D (the defended level after cross-examination).
+- Each concept carries three flags:
+  - `spontaneous`: S ≥ 2
+  - `prompted`: S < 2 and D ≥ 2
+  - `unresolved`: D < 2
+
+**Verdicts**:
+
+- **Solid**: all core concepts have S ≥ 2 and D ≥ 2, at least one D=3, no uncorrected hard error, and at least one transfer / boundary attack passed.
+- **Mostly solid**: all core concepts have D ≥ 2, but at least one core concept is `prompted`, or no D=3, or one small repaired gap.
+- **Still shaky**: any core concept has D < 2, or an uncorrected hard error, or a wrong idea the user talked you into.
+
+**Do not** let strong answers under cross-examination erase concepts the user never mentioned in the teach-back; `prompted` must appear in the debrief.
+
+## Attack map
+
+After the teach-back, build a finite attack map:
+
+| Source | Minimum | Notes |
+|---|---|---|
+| Coverage of each core concept | 1 / concept | S=0/1: ask "you never mentioned / only named it"; S≥2: ask one why or example |
+| Boundary / transfer for each concept | 1 / concept (optional) | Conditions, counterexamples, extreme cases |
+| Errors / contradictions in the teach-back | 1 each (max 2 / concept) | Quote the claim and ask how it holds |
+| Unexplained terms | max 2 total | "What does X mean?" |
+
+Follow up on each attack point at most once; then mark it `resolved` or `unresolved`.
+
+## When to stop
+
+Any one:
+
+1. The attack map is exhausted (every core concept has at least one attack point), and all hard errors / contradictions are resolved or recorded.
+2. 12-18 cross-examination questions (3-5 concepts: 12-15; 6-7 concepts: 15-18).
+3. The last 2-3 answers produced no new gaps.
+4. The user says stop / is clearly tired.
+
+- Cover every core concept and attempt at least one transfer / boundary question before the debrief, unless the user ends it.
+- At the debrief you must be able to list: spontaneous coverage, prompted repairs, unresolved points.
 
 ## Hard errors and the correction window
 
-- Agreeing with a wrong statement = a hard error; do not downgrade immediately.
-- If the user discovers and corrects it before the concept is closed (before the last follow-up on that concept), clear the hard error and count it as one piece of level-2 evidence.
-- If it is still uncorrected at the debrief → cap that concept at 1, and lower the overall verdict by at least one step.
-- If the user never had a chance to discover it (the roommate did not follow up), it is not a hard error, but write "unverified" in the material check.
+- An error in the teach-back that is not corrected in 2B = a hard error.
+- Agreeing with a wrong statement during cross-examination = a hard error; if the user discovers and corrects it before the concept closes, clear it and count one piece of level-2 evidence.
+- Still uncorrected at the debrief → cap that concept at 1, and lower the overall verdict by at least one step.
+- If the user never had a chance to discover it (it was never attacked), it is not a hard error, but write "unverified" in the material check.
 
 Hard caps (any one caps the concept at 1):
 
@@ -50,48 +97,20 @@ Hard caps (any one caps the concept at 1):
 - The user cannot translate the jargon into plain language.
 - The user contradicts themselves and cannot explain it after being challenged.
 
-## Effect of knowledge level
-
-- **Completely clueless**: standard evidence table.
-- **Knows a little**: standard evidence table; using a term the roommate already knows does not count as jargon tax; comparison and condition evidence matters more.
-- **Pretends to understand**: standard evidence table + teaching closure.
-  - At least one verification via restatement / example / problem (asking "do you get it?" does not count) → the session counts as complete.
-  - If the user lets the roommate leave without verifying → the verdict cannot be "solid"; if the evidence says "still shaky," it stays "still shaky"; the debrief says "you let them walk away with the wrong idea."
-  - Catching a fake understanding counts as "identifying and correcting a misconception" (level-2 evidence), no double count; actively verifying and making the roommate expose an error = one level-3 evidence (this mode only).
-- **Pretends not to understand**: standard evidence table; the roommate's "confusion" is fake and is not a diagnostic signal; judge the user's answers on their merits. Reveal at the end.
-
 ## Recording
 
-- Update the session file every 4-5 turns; do not reconstruct at the debrief.
-- Each entry: turn / concept / score / the user's exact words / gap.
+- Write the baseline immediately after the teach-back, before starting 2B.
+- Update the session file every 4-5 cross-examination questions.
+- Each entry: turn / attack ID / concept / D / the user's exact words / status.
 - If the user says "don't log," do not write the file, but keep the quotes and scores in context.
 
-## Exit conditions
+## Debrief (≤10 lines)
 
-Any one:
-
-1. All core concepts ≥2, at least one is 3, and no uncorrected hard error.
-2. 25 total turns (hard ceiling).
-3. User says stop / is clearly tired.
-4. Past 12 turns, every concept has been probed at least twice, and there is no more signal to extract.
-
-- Do not end before 12 turns unless the user ends it, is clearly tired, the material only supports one concept, or in "pretends to understand" mode the user lets the roommate leave.
-- Stop at 25 turns no matter what; if the bar is not met, the verdict is "Still shaky" and you name the untouched concepts.
-- Do not drag the session out to force "all concepts ≥2"; do not end early to make the user feel good.
-
-## Debrief (≤8 lines)
-
-- **Solid**: 1-3 points, specific about what they can explain and to what depth.
-- **Shaky**: 1-3 points, quoting their words or the sticking point.
+- **Teach-back coverage**: 1-3 points; which core concepts the user explained spontaneously.
+- **Defense under attack**: 1-3 points; what held, what was only filled in after asking, what stayed unresolved.
 - **Material check**: places where the user was wrong but the ignorant roommate could not catch it. No material → "No course material; could not check the course's conventions." Unknowable → "Could not verify."
 - **Verdict**: Solid / Mostly solid / Still shaky.
 - **Next step**: one minimal restatement task ("Explain X in three sentences without using the word Y"); optional second round after 48 hours.
-
-Verdicts:
-
-- **Solid**: all core concepts ≥2, at least one is 3, no uncorrected hard error.
-- **Mostly solid**: all ≥2, but missing level-3 evidence, or one small repaired gap.
-- **Still shaky**: any concept <2, or an uncorrected hard error, or a wrong idea the user talked you into.
 
 ## Anti-inflation
 
@@ -99,3 +118,4 @@ Verdicts:
 - Never treat "the roommate said they got it" as evidence of mastery; the roommate may have just given up.
 - Every verdict must point to quoted evidence; if you cannot quote it, lower the verdict.
 - Only answer "am I actually good?" in the debrief; mid-session, the roommate plays dumb.
+- A concept the user never mentioned in the teach-back stays `prompted` no matter how well they answer under cross-examination.

@@ -3,9 +3,10 @@
 - Date: YYYY-MM-DD
 - Material: <file / course / chapter>
 - Core concepts: <3-5, max 7>
+- Teach-back scope: <from ... to ...>
 - Status: in progress | complete
 - State 1 used: yes | no
-- Turn: 0 / 25
+- Cross-examination turn: 0 / 18
 - Roommate setup: <default / user-defined>
 - Roommate knowledge level: completely clueless | knows a little | pretends to understand | pretends not to understand
 - "Knows a little" scope (level 2 only): <2-3 related concepts>
@@ -30,19 +31,31 @@
 - Boundaries / counterexamples:
 - Source location:
 
-## Mastery
+## Teach-back baseline
 
-| Turn | Concept | Score | User's exact words | Gap |
-|------|---------|-------|--------------------|-----|
-|      |         |       |                    |     |
+| Concept | S | User's exact words | Notes |
+|---------|---|--------------------|-------|
+|         |   |                    |       |
 
-## Roommate misconception log
+## Attack map
 
-- <which turn, what the roommate said wrong, whether the user corrected it>
+| ID | Anchor (user's words / omission) | Type | Question | Status | Evidence |
+|----|----------------------------------|------|----------|--------|----------|
+|    |                                  |      |          |        |          |
 
-## Untouched
+## Cross-examination log
 
-- <concept>
+| Turn | Attack ID | D change | User's exact words | Notes |
+|------|-----------|----------|--------------------|-------|
+|      |           |          |                    |       |
+
+## Final
+
+- spontaneous (explained unprompted):
+- prompted (only after asking):
+- unresolved:
+- Verdict: Solid | Mostly solid | Still shaky
+- Material check:
 
 ## Next
 

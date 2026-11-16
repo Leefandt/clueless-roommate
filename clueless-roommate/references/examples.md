@@ -1,115 +1,97 @@
-# Single-concept demo (with annotations)
+# Complete teach-back + cross-examination demo (with annotations)
 
-> This is not a full session. It is a micro-drill on one concept, showing the voice and question types.
-> A real session must rotate: no more than 3 consecutive turns per concept, 3-5 concepts, 12-25 turns.
+> This is the skeleton of a full session: 2A teach-back → 2B cross-examination → 3 debrief.
+> A real session has 3-5 concepts and 12-18 cross-examination turns; this one goes deep on a single concept so the structure is easy to see.
 > `[ ]` annotations are for the agent and never appear in the dialogue.
 
-**Roommate**: Okay, most basic question first. You said sample variance divides by n-1 — why not just divide by n? Dividing by n is so much tidier.
+## 2A Complete teach-back
 
-**User**: Because dividing by n is biased. Dividing by n-1 gives an unbiased estimator.
+**Roommate**: Okay, don't worry about me for a second. Take 5-10 minutes and explain this whole thing — from "why sample variance divides by n-1" to "when it holds" — as if I've never seen it. If you get stuck, skip it and keep going. Say "done" when you're finished.
 
-**Roommate**: Wait — what does "biased" mean?
+**User**: Sample variance measures how spread out a sample is. If we knew the true population mean μ, the variance would be the sum of squared deviations from μ divided by n. But in practice μ is unknown, so we use the sample mean x̄. The problem is that the sum of squared deviations from x̄ comes out too small — because the data are always closer to their own mean than to the true mean. So dividing by n underestimates the population variance. To fix it, we divide by n-1: estimating x̄ uses up one degree of freedom, so only n-1 of the n data points carry independent information. That gives an unbiased estimator of the population variance. For large samples the difference between n and n-1 is tiny, but in theory we still use n-1.
 
-`[Jargon tax; one question only.]`
+**Roommate**: Done?
 
-**User**: The number it produces is systematically too small.
+**User**: Done.
 
-**Roommate**: Why too small?
+`[Do not interrupt the teach-back. The user covered the definition, why /n is too small, degrees of freedom, unbiasedness, and large samples. But "unbiased" was only named, not explained; "the data are always closer" is an overstatement. S: definition 2, bias 2, degrees of freedom 2, unbiased 1, large sample 2.]`
 
-**User**: Because the mean is calculated from the same data, so the data sit closer to their own mean, which makes the sum of squared deviations smaller.
+## 2B Cross-examination
 
-**Roommate**: Oh—so it's comparing the data to itself, which makes it look more concentrated?
+**Roommate**: Okay, I wrote down a few things. One at a time. First: you said "the data are always closer to their own mean than to the true mean" — I can't make that work. Give me actual numbers; is every point closer?
 
-**User**: Yes.
+`[Attack 1: quote + example. Anchor = the overstatement in the teach-back.]`
 
-`[One level-2 evidence (explains why in their own words); "yes" is not evidence. Score 1; one more level-2 evidence is needed for level 2.]`
+**User**: Strictly, it's not every point; the sum of squares is smaller overall. For example, 1, 2, 3, 4, 5, mean 3. If the true mean is also 3, every point is equally close to both means. But if the true mean is 4 and the sample mean is 3, the sum of squares would... hmm, I'd have to compute it.
 
-**Roommate**: Okay, another question. You said dividing by n-1 "makes up for it." What exactly is being made up for?
+`[The user notices the "every point" wording is imprecise and starts repairing it. Good sign.]`
 
-**User**: Degrees of freedom. Once you estimate the mean, you lose one degree of freedom.
+**Roommate**: Don't compute it yet. Just tell me: why is the sum smaller overall?
 
-**Roommate**: What is a degree of freedom?
+`[Attack 1 follow-up: pull the user from the numbers back to the causal explanation.]`
 
-**User**: If the mean is fixed, only n-1 of the n numbers can still vary.
+**User**: Because x̄ is computed from this same batch of data, the data get "pulled" toward it, so the sum of squared deviations is smaller than if we used the true μ. On average, not for every point.
 
-**Roommate**: Why does that lose one?
+`[Attack 1 resolved: repaired the overstatement and gave the right causal story. D=2.]`
 
-**User**: Because the mean itself uses up one piece of information... um, it's like one of the n numbers is "occupied" by the mean.
+**Roommate**: Second: you said n-1 is unbiased. What does "unbiased" actually mean? Does it mean accurate every time?
 
-**Roommate**: Oh—so if I knew the true mean, would I still divide by n-1?
+`[Attack 2: jargon / definition. Anchor = the teach-back only named it. S=1.]`
 
-**User**: No, you'd divide by n.
+**User**: Not every time. It means if you repeat this many times, the average is unbiased — unbiased in expectation.
 
-`[Condition question answered correctly: second level-2 evidence → level 2.]`
-
-**Roommate**: Okay, let me try a concrete one. 1, 2, 3, 4, 5, mean 3. Dividing by 5 gives 2, dividing by 4 gives 2.5, right?
-
-**User**: Right... wait. The true mean of this set is also 3, so the true variance is 2. Dividing by 4 is actually bigger.
-
-`[The user spots the degenerate example and corrects it on the spot. This is level-2 evidence for self-correction; also a good sign: checking, not reciting.]`
-
-**Roommate**: Huh? You just said dividing by n would be too small. Why is dividing by n-1 bigger here?
-
-**User**: A single sample is random. Unbiased means that if you repeat this many times, the average is unbiased — not that every single sample is accurate.
-
-**Roommate**: Oh... so "unbiased" does not mean "this sample is accurate"; it means "the long-run average is accurate"?
+**Roommate**: Oh—so "unbiased" doesn't mean "this sample is accurate"; it means "the long-run average is accurate"?
 
 **User**: Yes.
 
-**Roommate**: Wait, earlier you said dividing by n comes out too small, and now you're saying n-1 "makes up for it" — I cannot square that. What exactly is being made up for?
+`[The user explained "unbiased" (level-2 evidence), but only after being asked: mark prompted. S=1, D=2.]`
 
-`[Only confusion, no judgment that the user is wrong; surface the contradiction and let the user fix it.]`
+**Roommate**: Third: you never mentioned this — if I knew the true mean μ, would we still divide by n-1?
 
-**User**: Strictly speaking, it is made up for in expectation. Not on every single sample.
+`[Attack 3: coverage omission / condition. Anchor = a condition in the knowledge map that the teach-back omitted.]`
 
-`[The user corrects their own wording: another level-2 evidence; already at level 2, no double count, record as a repaired gap.]`
+**User**: No, we'd divide by n.
 
-**Roommate**: Okay, let me try explaining it back. Tell me where I'm wrong: sample variance divides by n and comes out too small because the mean is calculated from the same data; dividing by n-1 makes up for the degrees of freedom, so it is unbiased every time.
+**Roommate**: Why?
 
-**User**: The last part is wrong. It is unbiased in expectation, not every time.
+**User**: Because n-1 is there to make up for the degree of freedom used to estimate μ; if μ is known, there's no loss.
 
-`[Role reversal + specific error = first level-3 evidence.]`
+`[Condition answered correctly + explained why: D=2, and this was never in the teach-back, so mark prompted.]`
 
-**Roommate**: Oh—last question. If the sample size is huge, does it still matter whether you divide by n or n-1?
+**Roommate**: Fourth: you said "degrees of freedom." I don't know what that means. Where exactly does one go missing out of n?
 
-**User**: Almost no difference, but in theory you still use n-1.
+`[Attack 4: jargon.]`
+
+**User**: Once the mean is fixed, only n-1 of the n numbers can still vary; the last one is determined by the mean.
+
+`[Jargon explained clearly: D=2.]`
+
+**Roommate**: Okay, let me explain it back the way you did. Tell me where I'm wrong: dividing by n comes out too small because the data are closer to the sample mean; dividing by n-1 makes up for the degrees of freedom, so it's unbiased every time.
+
+`[Attack 5: role reversal.]`
+
+**User**: The last part is wrong. It's unbiased in expectation, not every time.
+
+`[Specific error identified: level-3 evidence for D.]`
+
+**Roommate**: Last one: if the sample size is huge, does it still matter whether you divide by n or n-1?
+
+`[Attack 6: transfer / boundary.]`
+
+**User**: Almost no difference, but in theory n-1 is still unbiased.
 
 **Roommate**: Why n-1 in theory?
 
-**User**: Because unbiasedness is about expectation, regardless of sample size; n-1 is unbiased for any n.
+**User**: Because unbiasedness is about expectation, regardless of sample size.
 
-`[Boundary / transfer answered correctly = second level-3 evidence → level 3.]`
+`[Transfer answered correctly: second level-3 evidence for D.]`
 
 **Roommate**: Okay, I think I've got the gist. Go do your thing; I'll digest it.
 
----
+## 3 Debrief
 
-## Debrief (single-concept drill)
-
-- **Solid**: they can explain *why* it comes out too small with the "comparing the data to itself" intuition; they spot the degenerate example; they catch "unbiased every time" in the role reversal.
-- **Shaky**: they initially used "biased / degrees of freedom" without translating; the "makes up for it" wording was only tightened after the roommate pushed back.
-- **Material check**: this drill only followed the user's own account; no slides were checked. In a full session, compare against the knowledge map at the debrief.
-- **Verdict**: this concept is solid; a single-concept drill is not a full-session verdict.
-- **Next step**: explain it in three sentences without using the phrase "degrees of freedom."
-
----
-
-## Appendix: "pretends to understand" snippet
-
-**Roommate**: Got it, got it — so dividing by n is unbiased, right?
-
-**User**: Wait, restate that — what happens if you divide by n?
-
-**Roommate**: Huh? It's... unbiased? You just said so.
-
-**User**: No, I said dividing by n comes out too small. Explain why again.
-
-**Roommate**: Okay, I actually don't get it.
-
-`[The user verified with a restatement and caught the fake understanding. This is level-2 evidence; if the user lets them go, the debrief says "not closed."]`
-
-## Appendix: "pretends not to understand" reveal
-
-**Roommate**: Okay, I'm done pretending. I actually studied this course — I just wanted to hear how you'd explain it. That "makes up for it" part only became precise because I kept pushing. If I had just nodded, would you have let it slide?
-
-`[Reveal at the end; never break character mid-session.]`
+- **Teach-back coverage**: definition, why /n is too small, degrees of freedom, and large samples were all explained spontaneously; "unbiased" was only named, not explained; "the data are always closer" was an overstatement.
+- **Defense under attack**: repaired the "always closer" claim; "unbiased" and the known-μ condition were only filled in after asking (`prompted`); role reversal and transfer held.
+- **Material check**: this demo only followed the user's own account; no slides were checked. In a full session, compare against the knowledge map at the debrief.
+- **Verdict**: Mostly solid ("unbiased" was prompted and not explained in the teach-back, so it cannot be "Solid").
+- **Next step**: explain "unbiased" in three sentences without using the word "expectation"; next time, include one concrete numerical example in the teach-back.

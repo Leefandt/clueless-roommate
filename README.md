@@ -49,6 +49,8 @@ Start with 1. Use 3 to practice checking whether a student really understood. Us
 
 Requires [Claude Code](https://claude.com/claude-code).
 
+Prefer a zip? Download the latest [release](https://github.com/Leefandt/clueless-roommate/releases/latest).
+
 ### English version
 
 ```bash

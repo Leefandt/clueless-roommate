@@ -47,6 +47,8 @@
 
 需要 [Claude Code](https://claude.com/claude-code)。
 
+想直接下载？见 [Releases](https://github.com/Leefandt/clueless-roommate/releases/latest)。
+
 ### 中文版
 
 ```bash
